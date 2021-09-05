@@ -1,12 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 30
 
     defaultConfig {
         applicationId "org.pjsip.pjsua2.app"
-        minSdkVersion 11
-        targetSdkVersion 26
+        minSdkVersion 19
+        targetSdkVersion 30
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -18,5 +19,8 @@ android {
 }
 
 dependencies {
+    implementation 'androidx.multidex:multidex:2.0.1'
     implementation project(path: ':pjsua2')
+    implementation 'com.github.captain-miao:grantap:1.0.3'
+    implementation 'com.blankj:utilcodex:1.30.6'
 }
