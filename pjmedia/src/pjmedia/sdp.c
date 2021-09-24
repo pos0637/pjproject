@@ -1417,6 +1417,17 @@ PJ_DEF(pj_status_t) pjmedia_sdp_parse( pj_pool_t *pool,
 					  "info, info is ignored"));
 		    }
 		    break;
+        //ALEX[[[
+        case 'u':
+            parse_generic_line(&scanner, &session->gb_u, &ctx);
+            break;
+        case 'y':
+            parse_generic_line(&scanner, &session->gb_y, &ctx);
+            break;
+        case 'f':
+            parse_generic_line(&scanner, &session->gb_f, &ctx);
+            break;
+        //]]]ALEX
 		default:
 		    if (cur_name >= 'a' && cur_name <= 'z')
 			parse_generic_line(&scanner, &dummy, &ctx);
@@ -1514,6 +1525,12 @@ PJ_DEF(pjmedia_sdp_session*) pjmedia_sdp_session_clone( pj_pool_t *pool,
     for (i=0; i<rhs->media_count; ++i) {
 	sess->media[i] = pjmedia_sdp_media_clone(pool, rhs->media[i]);
     }
+
+    //ALEX[[[
+    pj_strdup(pool, &sess->gb_u, &rhs->gb_u);  // GB28181:SDP:u=
+    pj_strdup(pool, &sess->gb_y, &rhs->gb_y);  // GB28181:SDP:y=
+    pj_strdup(pool, &sess->gb_f, &rhs->gb_f);  // GB28181:SDP:f=
+    //]]]ALEX
 
     return sess;
 }

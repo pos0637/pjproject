@@ -682,6 +682,11 @@ struct pjmedia_sdp_session
     unsigned	       media_count;		/**< Number of media.	    */
     pjmedia_sdp_media *media[PJMEDIA_MAX_SDP_MEDIA];	/**< Media array.   */
 
+	//ALEX[[[
+	pj_str_t gb_y; // GB28181:SDP:y=
+    pj_str_t gb_f; // GB28181:SDP:f=
+    pj_str_t gb_u; // GB28181:SDP:u=
+	//]]]ALEX
 };
 
 /**

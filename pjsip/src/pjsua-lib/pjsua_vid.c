@@ -1095,7 +1095,10 @@ pj_status_t pjsua_vid_channel_update(pjsua_call_media *call_med,
 	si->jb_max = pjsua_var.media_cfg.jb_max;
 
 	/* Set SSRC and CNAME */
-	si->ssrc = call_med->ssrc;
+	//ALEX[[[
+	// si->ssrc = call_med->ssrc;
+	si->ssrc = pj_strtoul(&remote_sdp->gb_y);
+	//]]]ALEX
 	si->cname = call->cname;
 
 	/* Set RTP timestamp & sequence, normally these value are intialized
