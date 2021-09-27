@@ -240,11 +240,11 @@ class MyAccount extends Account {
                     "<Response>\r\n" +
                     "<CmdType>Catalog</CmdType>\r\n" +
                     "<SN>" + sn + "</SN>\r\n" +
-                    "<DeviceID>" + Constants.username + "</DeviceID>\r\n" +
+                    "<DeviceID>" + "43000000801320008064" + "</DeviceID>\r\n" +
                     "<SumNum>1</SumNum>\r\n" +
                     "<DeviceList Num=\"1\">\r\n" +
                     "<Item>\r\n" +
-                    "<DeviceID>" + Constants.cameraDeviceId + "</DeviceID>\r\n" +
+                    "<DeviceID>" + "13000000441320000026" + "</DeviceID>\r\n" +
                     "<Name>SmartHelmet</Name>\r\n" +
                     "<Manufacturer>GH-I.com</Manufacturer>\r\n" +
                     "<Model>SH_FJSG_03</Model>\r\n" +
@@ -253,7 +253,7 @@ class MyAccount extends Account {
                     "<Block>0</Block>\r\n" +
                     "<Address>Fujian</Address>\r\n" +
                     "<Parental>0</Parental>\r\n" +
-                    "<ParentID>" + Constants.username + "</ParentID>\r\n" +
+                    "<ParentID>" + "43000000801320008064" + "</ParentID>\r\n" +
                     "<IPAddress></IPAddress>\r\n" +
                     "<Port>0</Port>\r\n" +
                     "<Status>ON</Status>\r\n" +
