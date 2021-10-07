@@ -1594,7 +1594,7 @@ static void default_config()
     pjsua_config_default(&cfg->cfg);
     pj_ansi_sprintf(tmp, "PJSUA v%s %s", pj_get_version(),
 		    pj_get_sys_info()->info.ptr);
-    pj_strdup2_with_null(app_config.pool, &cfg->cfg.user_agent, tmp);
+    pj_strdup2_with_null(app_config.pool, &cfg->cfg.user_agent, "founu.com");
 
     pjsua_logging_config_default(&cfg->log_cfg);
     pjsua_media_config_default(&cfg->media_cfg);
