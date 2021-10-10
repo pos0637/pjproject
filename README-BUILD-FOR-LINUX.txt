@@ -4,9 +4,16 @@ https://blog.yasking.org/a/ubuntu-install-pjsip-pjsua2.html
 https://www.pjsip.org/pjsua.htm
 
 build scripts:
-./configure --disable-libyuv --enable-shared CFLAGS="-O0 -g"
+./configure --disable-libyuv --enable-shared CFLAGS="-O0 -g" --with-openh264=/usr/local
 make dep
 make
+sudo make install
+sudo /sbin/ldconfig
+cd pjsip-apps/src/swig/
+make
+sudo make install
+cd pjsip-apps/src/swig/python
+sudo python3 setup.py install
 
 pjlib/include/pj/config_site.h:
 #include <pj/config_site_sample.h>
