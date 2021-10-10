@@ -713,17 +713,6 @@ static void on_pager2(pjsua_call_id call_id, const pj_str_t *from,
         sn[len - 1] = '\0';
         PJ_LOG(3, (THIS_FILE, "SN: %s", sn));
 
-        const pjsip_endpoint *endpoint = pjsua_get_pjsip_endpt();
-        pjsip_tx_data *tdata;
-        pj_status_t status;
-
-        status = pjsip_endpt_create_response(endpoint, rdata, 200, NULL, &tdata);
-        if (status != PJ_SUCCESS) {
-            return;
-        }
-
-        pjsip_media_type ctype;
-        pjsua_parse_media_type(tdata->pool, mime_type, &ctype);
         const char content[1024];
         sprintf(content,
                 "<?xml version=\"1.0\"?>\r\n"
@@ -755,15 +744,8 @@ static void on_pager2(pjsua_call_id call_id, const pj_str_t *from,
                 sn, "43000000801320008064", "13000000441320000026", "43000000801320008064");
         const pj_str_t contentStr = pj_str(content);
 
-        tdata->msg->body = pjsip_msg_body_create(tdata->pool, &ctype.type, &ctype.subtype, &contentStr);
-        if (tdata->msg->body == NULL) {
-            pjsip_tx_data_dec_ref(tdata);
-            return;
-        }
-
-        status = pjsip_endpt_send_response2(endpoint, rdata, tdata, NULL, NULL);
+        pj_status_t status = pjsua_im_send(acc_id, contact, mime_type, &contentStr, NULL, NULL);
         if (status != PJ_SUCCESS) {
-            pjsip_tx_data_dec_ref(tdata);
             return;
         }
     }
