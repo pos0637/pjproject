@@ -3,8 +3,27 @@ https://trac.pjsip.org/repos/wiki/Getting-Started/Autoconf#Requirements
 https://blog.yasking.org/a/ubuntu-install-pjsip-pjsua2.html
 https://www.pjsip.org/pjsua.htm
 
+prepare:
+curl -L -# -o openh264.tar.gz https://github.com.cnpmjs.org/cisco/openh264/archive/openh264v2.1.0.tar.gz
+tar xvf openh264.tar.gz
+cd openh264-openh264v2.1.0/
+make
+sudo make install
+
+git clone https://github.com/lemenkov/libyuv.git
+cd libyuv
+mkdir build
+cd build 
+cmake -DCMAKE_BUILD_TYPE="Release" ..
+cmake --build . --target install --config Release
+
+sudo apt install git build-essential nasm libsdl2-dev libv4l-dev swig default-jre default-jdk python3-dev
+sudo add-apt-repository ppa:wireshark-dev/stable
+sudo apt update
+sudo apt install wireshark
+
 build scripts:
-./configure --disable-libyuv --enable-shared CFLAGS="-O0 -g" --with-openh264=/usr/local
+./configure --enable-shared CFLAGS="-O0 -g" --with-openh264=/usr/local
 make dep
 make
 sudo make install
